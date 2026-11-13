@@ -109,3 +109,9 @@ it-helpdesk-system/
 ## Purpose
 
 This project demonstrates practical skills in Python backend development, database management, web application development, authentication, and application security.
+
+## Application Preview
+
+### Homepage
+
+![IT Help Desk Homepage](screenshots/homepage.png)
