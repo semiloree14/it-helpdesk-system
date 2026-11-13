@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Help Desk Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <h1>IT Help Desk Dashboard</h1>
+    <a href="{{ url_for('logout') }}">
+    <button>Logout</button>
+</a>
+    <p>Manage and monitor submitted support tickets.</p>
+<div class="stats-container">
+
+    <div class="stat-card">
+        <h3>Total Tickets</h3>
+        <p>{{ total_tickets }}</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>Open Tickets</h3>
+        <p>{{ open_tickets }}</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>In Progress</h3>
+        <p>{{ in_progress }}</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>Resolved</h3>
+        <p>{{ resolved_tickets }}</p>
+    </div>
+
+</div>
+    <h2>Support Tickets</h2>
+    <form action="/dashboard" method="GET">
+    <input
+        type="text"
+        name="search"
+        placeholder="Search tickets..."
+    >
+    <button type="submit">Search</button>
+</form>
+
+    <table border="1" cellpadding="10" align="center">
+        <tr>
+            <th>Ticket ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Category</th>
+            <th>Priority</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Resolution Notes</th>
+            <th>Update Status</th>
+        </tr>
+
+        {% for ticket in tickets %}
+        <tr>
+            <td>{{ ticket[0] }}</td>
+            <td>{{ ticket[1] }}</td>
+            <td>{{ ticket[2] }}</td>
+            <td>{{ ticket[3] }}</td>
+            <td>{{ ticket[4] }}</td>
+            <td>{{ ticket[5] }}</td>
+           <td>{{ ticket[6] }}</td>
+            <td>{{ ticket[7] or "No resolution notes yet" }}</td>
+            <td>
+                <form action="{{ url_for('update_ticket', ticket_id=ticket[0]) }}" method="POST">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+       <select name="status">
+    <option value="Open">Open</option>
+    <option value="In Progress">In Progress</option>
+    <option value="Resolved">Resolved</option>
+</select>
+
+<textarea
+    name="resolution_notes"
+    placeholder="Enter resolution notes..."
+    rows="2"
+></textarea>
+
+<button type="submit">Update</button>
+    </form>
+</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+</body>
+</html>

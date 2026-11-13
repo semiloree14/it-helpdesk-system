@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit a Ticket</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <h1>Submit a Support Ticket</h1>
+    <p>Please provide details about the technical issue you're experiencing.</p>
+
+    <form action="{{ url_for('ticket') }}" method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <label>Full Name</label><br>
+        <input type="text" name="full_name" placeholder="Enter your full name" required><br><br>
+
+        <label>Email Address</label><br>
+        <input type="email" name="email" placeholder="Enter your email" required><br><br>
+
+        <label>Issue Category</label><br>
+        <select name="category" required>
+            <option value="Hardware">Hardware</option>
+            <option value="Software">Software</option>
+            <option value="Network">Network</option>
+        </select><br><br>
+
+        <label>Priority</label><br>
+        <select name="priority" required>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+        </select><br><br>
+
+        <label>Describe Your Issue</label><br>
+        <textarea name="description" placeholder="Explain the problem you're experiencing" required></textarea><br><br>
+
+        <button type="submit">Submit Ticket</button>
+
+    </form>
+
+</body>
+</html>
