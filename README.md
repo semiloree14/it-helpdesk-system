@@ -113,5 +113,13 @@ This project demonstrates practical skills in Python backend development, databa
 ## Application Preview
 
 ### Homepage
-
 ![IT Help Desk Homepage](screenshots/homepage.png)
+
+### Admin Dashboard
+![Admin Dashboard](screenshots/dashboard.png)
+
+### Ticket Submission
+![Ticket Submission](screenshots/ticket-submission.png)
+
+### Admin Login
+![Admin Login](screenshots/admin-login.png)
