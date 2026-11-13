@@ -1,50 +1,90 @@
 # IT Help Desk Management System
 
-A web-based IT Help Desk application built with Python and Flask. It allows users to submit technical support tickets and enables administrators to manage, search, track, and resolve reported issues.
+A web-based IT Help Desk Management System built with Python, Flask, and SQLite. The application allows users to submit technical support tickets while administrators can manage, track, search, and resolve reported issues through a secure dashboard.
 
 ## Features
 
-- Submit IT support tickets.
-- Store tickets in an SQLite database.
-- Admin login and logout.
+- Submit technical support tickets.
+- Store submitted tickets in an SQLite database.
+- Secure admin login and logout.
 - Protected administrative dashboard.
 - Search tickets by name, email, category, priority, or description.
 - Track ticket statuses: Open, In Progress, and Resolved.
 - Add resolution notes to tickets.
-- Dashboard statistics showing ticket totals and statuses.
+- View dashboard statistics.
 - Password hashing for admin authentication.
 - CSRF protection for form submissions.
-- Environment-based configuration for credentials and secret keys.
+- Environment-based configuration for sensitive credentials.
 
 ## Technologies Used
 
 - Python
 - Flask
 - SQLite
-- HTML
-- CSS
+- HTML5
+- CSS3
 - Flask-WTF
 - Werkzeug
 
-## Installation
+## Installation and Setup
 
-1. Clone or download this repository.
-2. Open the project folder in your terminal.
-3. Install dependencies:
+### 1. Clone the repository
 
-   ```bash
-   python -m pip install -r requirements.txt
-   ```
+```bash
+git clone https://github.com/semiloree14/it-helpdesk-system.git
+```
 
-4. Configure the required environment variables before starting the application.
+### 2. Navigate into the project directory
 
-5. Run the application:
+```bash
+cd it-helpdesk-system
+```
 
-   ```bash
-   python app.py
-   ```
+### 3. Install dependencies
 
-6. Open `http://127.0.0.1:5000` in your browser.
+```bash
+python -m pip install -r requirements.txt
+```
+
+### 4. Configure environment variables
+
+In PowerShell, set the following variables:
+
+```powershell
+$env:SECRET_KEY="your-secret-key"
+$env:ADMIN_USERNAME="admin"
+$env:ADMIN_PASSWORD_HASH="your-password-hash"
+```
+
+Generate a secret key with:
+
+```bash
+python -c "import secrets; print(secrets.token_hex(32))"
+```
+
+Generate an admin password hash with:
+
+```bash
+python -c "from werkzeug.security import generate_password_hash; print(generate_password_hash('your-password'))"
+```
+
+Replace the example values with your own. Never publish your actual secrets or password hash.
+
+### 5. Run the application
+
+```bash
+python app.py
+```
+
+### 6. Open the application
+
+Visit:
+
+```text
+http://127.0.0.1:5000
+```
+
+The SQLite database is created automatically when the application starts.
 
 ## Project Structure
 
@@ -52,9 +92,9 @@ A web-based IT Help Desk application built with Python and Flask. It allows user
 it-helpdesk-system/
 │
 ├── app.py
-├── database.db
 ├── requirements.txt
 ├── README.md
+├── .gitignore
 │
 ├── templates/
 │   ├── index.html
@@ -68,4 +108,4 @@ it-helpdesk-system/
 
 ## Purpose
 
-This project demonstrates practical skills in backend development, database management, web application development, authentication, and basic application security.
+This project demonstrates practical skills in Python backend development, database management, web application development, authentication, and application security.
